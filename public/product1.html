@@ -2,6 +2,7 @@
     <head>
         <title>Onibata Mall</title>
         <link rel="stylesheet" href="oni.css">
+        <link rel="stylesheet" href="product.css">
     </head>
 
     <body >
@@ -29,6 +30,7 @@
                         <li><a href ="contact.html">Contact Us </a></li>
                         <li><a href ="about.html">About Us</a></li>
                     </ul>
+
                 </nav>
             </div>
             <div class = "toggle-menu">
@@ -48,7 +50,8 @@
                 <li><a href ="about.html">About Us</a></li>
             </ul>
         </div>
-        <main>
+        <main class = "hide-toggle-menu">
+
             <div class="slide-show-container">
 				<div class="slide-show slide-1" style="display: none;">
 					<img class="slide-img-background" src="animi pics/slide 1/slide-background.png" alt="banner">
@@ -61,7 +64,7 @@
 						<a href="#">shop now</a>
 					</div>
 				</div>
-
+                
 				<div class="slide-show slide-2" style="display: none;">
 					<img class="slide-img-background" src="animi pics/slide 2/slide-background2.jpg" alt="banner">
 					<div class="slide-product">
@@ -89,10 +92,44 @@
 				<div class="slide-show slide-4" style="display: flex;">
 					<img class="slide-img-background" src="animi pics/slide 4/slide-background4.jpg" alt="banner">
 				</div>
-			</div>
-            <div class = "index-page hide-toggle-menu">
+            </div>
+            
+           <div class = "index-page  product-page">
+                <!-- description of the product -->
+                <div class="single-product-wrapper">
+                    <div class="products-items">
+                        <div class="product-single">
+                            
+                        </div>
+    
+                        <div class="content">
+                            <div class="info">
+                                
+                            </div>
+                            <p></p>
+                            <p class="des">
+                                This is a fine vibram slippers made out of silk, and a well built sole.
+                                <br>
+                                we have various brand of this, in different color, size and pattern,
+                                <br>
+                                which you will love to check out. 
+                            </p>
+                            <p></p>
+                            <div class="scr">
+                                Delivery is 5-7 days nationwide.
+                                <br>
+                            </div>
+                            The sizes that are available include:42-45
+                            <p></p>
+                            <a href="payment.html">
+                                <button type="submit">purchase</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <div class= "latest-title title">
-                    <h3>LATEST</h3>
+                    <h3>other product</h3>
                 </div>
                 <div class= "latest-product product-wrapper">
                     
@@ -159,5 +196,5 @@
         </footer>
     </body>
     <script src= "oni.js"></script>
-    <script src= "data.js"></script>
+    <script src= "pay.js"></script>
 </html>

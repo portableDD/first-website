@@ -155,39 +155,9 @@ let data = [
 ]
 
 
-
-
 function formatItem() {
-    let items = ""
-    let fullPath = window.location.href
-    let pos = fullPath.lastIndexOf('/') + 1
-    let category = fullPath.substr(pos)
-    category = category.substring(0, category.indexOf('.'));
-
-    switch (category) {
-        case 'index':
-            
-            break;
-        case 'shoes':
-            data = data.filter(item => {
-                return item.category == 'shoe'
-            })
-            break;
-        case 'sandal':
-            data = data.filter(item => {
-                return item.category == 'sandal'
-            })
-            break;
-        case 'slipper':
-            data = data.filter(item => {
-                return item.category == 'slipper'
-            })
-            break;
-        default:
-            break;
-    }
-    
-    
+    let items   = ""
+    if (window.location.href.includes('index')) {
     for ( i = 0; i < data.length; i++) {
             items += `<div class ="items">
                             <a href= "product1.html">
@@ -202,9 +172,78 @@ function formatItem() {
                         </div>`
 
                     
+        } return items;
+    } else if ( window.location.href.includes('shoe')){
+        let filitered = [];
+        filitered = data.filter(item => {
+            return item.category === 'shoe'
+        })
+            // alert(JSON.stringify(filitered))  
+    
+        for ( i = 0; i < filitered.length; i++) {
+            items += `<div class ="items">
+                            <a href= #>
+                                <div class= "featured-image">
+                                    <img src= "${filitered[i].image}">
+                                </div>
+                                <div class = "info">
+                                    <span>${filitered[i].name}</span>
+                                    <span>&#8358 ${filitered[i].price}</span>
+                                </div>
+                            </a>
+                        </div>`
+    
+                    
         } 
         return items;
+    } else if ( window.location.href.includes('sandal')) {
+        let filiter = [];
+        filiter = data.filter(item => {
+            return item.category === 'sandal'
+        })
+            // alert(JSON.stringify(filiter))  
     
+        for ( i = 0; i < filiter.length; i++) {
+            items += `<div class ="items">
+                            <a href= #>
+                                <div class= "featured-image">
+                                    <img src= "${filiter[i].image}">
+                                </div>
+                                <div class = "info">
+                                    <span>${filiter[i].name}</span>
+                                    <span>&#8358 ${filiter[i].price}</span>
+                                </div>
+                            </a>
+                        </div>`
+    
+                    
+        } 
+        return items;
+    }  else if ( window.location.href.includes('slipper')) {
+        let filit = [];
+        filit = data.filter(item => {
+            return item.category === 'slipper'
+        })
+            // alert(JSON.stringify(filit))  
+    
+        for ( i = 0; i < filit.length; i++) {
+            items += `<div class ="items">
+                            <a href= #>
+                                <div class= "featured-image">
+                                    <img src= "${filit[i].image}">
+                                </div>
+                                <div class = "info">
+                                    <span>${filit[i].name}</span>
+                                    <span>&#8358 ${filit[i].price}</span>
+                                </div>
+                            </a>
+                        </div>`
+    
+                    
+        } 
+        return items;
+    }
+
 }
 
 
