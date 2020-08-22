@@ -316,6 +316,12 @@ let singleItem = data.filter(item => {
     if (item.name === param) {
         productSingleImage.setAttribute('src', item.image)
         link.setAttribute('href', 'payment.html?name='+item.name)
+       /* if (window.location.href.includes('product')) {
+            link.setAttribute('href', 'payment.html?name='+item.name)
+        } else {
+            link.setAttribute('href', '#')
+            link.setAttribute('onclick', 'return '+payWithPaystack())
+        }*/
 
         contentInfo.innerHTML = `
                 <span>Product:${item.name} </span>
@@ -325,9 +331,10 @@ let singleItem = data.filter(item => {
                         <span>price: ${item.price} </span>
                         <br>
                 `
-        link.innerHTML = window.location.href.includes('product') ?
+        link.innerHTML = window.location.href.includes('product')?
             `<button type="submit">purchase</button>` :
-          `<button onclick = "payWithPaystack()" type="submit">pay</button>`
+             link.style.display = "none"
+
 
         desc.innerHTML = switchContent(item.desc, link)
         content.appendChild(contentInfo)
@@ -370,11 +377,12 @@ function paymentForm() {
                                 <p class="size">
                                     <input type="text" placeholder="Shoes size">
                                 </p>
+                                <button onclick = "payWithPaystack()" type="submit">pay</button>
                             </div>
     `
 }
 
-function payWithPaystack(e) {
-    e.preventDefault()
+function payWithPaystack() {
+    alert('here')
 }
 
