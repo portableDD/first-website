@@ -1,4 +1,4 @@
-let data = [
+let info = [
     
     {
         name: 'BLACK DOUBLE MONK STRAP',
@@ -114,46 +114,55 @@ let data = [
     },
 ]
 
-function getProduct() {
-    let item = "";
-    for ( i = 0; i < data.length; i++) {
-        for (item in data[i]){
-            item +=  `<div class="featured-image">
-                    <img src="${data[i].image}">
-                </div>`
-        }
-    } return item;
-} 
-document.querySelector('.product-single').innerHTML = getProduct();
+// Array.prototype.get = function getProduct(name) {
+//     for (var i=0, len=data[i].length; i<len; i++) {
+//         if (typeof this[i] != "item") continue;
+//         if (this[i].image === name) return this[i].value;
+//     }
+// };
 
 
-function getInfo() {
-    let tem = "";
-    for ( i = 0; i < data.length; i++) {
-        for (tem in data[i]) {
-            tem +=  `<span>Product:${data[i].name} </span> 
-                        <br>
-                        <span>vendor: Tetrax magnificent</span> 
-                        <br>
-                        <span>price: ${data[i].price} </span> 
-                        <br>`
-        }
-    } return tem;
-} 
-document.querySelector('.content .info').innerHTML = getInfo();
+
+// function getProduct() {
+//     let item = "";
+//     for ( i = 0; i < data.length; i++) {
+//         // for (item in data[i].image){
+//             item +=  `<div class="featured-image">
+//                     <img src="${data[i].image}">
+//                 </div>`
+//         // }
+//     } return item;
+// } 
+// document.querySelector('.product-single').innerHTML = getProduct();
 
 
-function formatItem() {
+// function getInfo() {
+//     let tem = "";
+//     for ( i = 0; i < data.length; i++) {
+//         for (tem in data[i]) {
+//             tem +=  `<span>Product:${data[i].name} </span> 
+//                         <br>
+//                         <span>vendor: Tetrax magnificent</span> 
+//                         <br>
+//                         <span>price: ${data[i].price} </span> 
+//                         <br>`
+//         }
+//     } return tem;
+// } 
+// document.querySelector('.content .info').innerHTML = getInfo();
+
+
+function format() {
     let items   = "";
-    for ( i = 0; i < data.length; i++) {
+    for ( i = 0; i < info.length; i++) {
             items += `<div class ="items">
                             <a href= "product1.html">
                                 <div class= "featured-image">
-                                    <img src= "${data[i].image}">
+                                    <img src= "${info[i].image}">
                                 </div>
                                 <div class = "info">
-                                    <span>${data[i].name}</span>
-                                    <span>&#8358 ${data[i].price}</span>
+                                    <span>${info[i].name}</span>
+                                    <span>&#8358 ${info[i].price}</span>
                                 </div>
                             </a>
                         </div>`
@@ -164,6 +173,6 @@ function formatItem() {
 }
 
 
-document.querySelector('.product-wrapper').innerHTML = formatItem();
+document.querySelector('.product-wrapper').innerHTML = format();
 
 

@@ -211,3 +211,34 @@ function formatItem() {
 document.querySelector('.product-wrapper').innerHTML = formatItem();
 
 
+
+function getProduct() {
+    let item = "";
+ for ( i = 0; i < data.length; i++) {
+        for (item in data[i]){
+            item +=  `<div class="featured-image">
+                    <img src="${data[i].image}">
+                </div>`
+        } 
+    } 
+    return item;
+}
+
+
+document.querySelector('.product-single').innerHTML = getProduct();
+
+
+function getInfo() {
+    let tem = "";
+    for ( i = 0; i < data.length; i++) {
+        for (tem in data) {
+            tem +=  `<span>Product:${data[i].name} </span> 
+                        <br>
+                        <span>vendor: Tetrax magnificent</span> 
+                        <br>
+                        <span>price: ${data[i].price} </span> 
+                        <br>`
+        }
+    } return tem;
+} 
+document.querySelector('.content .info').innerHTML = getInfo();
