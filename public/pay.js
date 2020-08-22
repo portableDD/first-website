@@ -156,7 +156,7 @@ function format() {
     let items   = "";
     for ( i = 0; i < info.length; i++) {
             items += `<div class ="items">
-                            <a href= "product1.html">
+                            <a href= "product.html">
                                 <div class= "featured-image">
                                     <img src= "${info[i].image}">
                                 </div>
