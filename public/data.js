@@ -1,3 +1,6 @@
+errorMessages = []
+
+
 let data = [
     {
         name: 'TMI BROWN VIBRAM',
@@ -362,25 +365,63 @@ function switchContent(data) {
 function paymentForm() {
     return `
         <div class="pay-bitch">
+        <div class="error"></div>
                                 <p class="name">
-                                    <input type="text" placeholder="Full Name">
+                                    <input class="field" type="text"  placeholder="Full Name">
                                 </p>
                                 <p class="phone">
-                                    <input type="text" placeholder="Phone Number">
+                                    <input class="field" type="text"  placeholder="Phone Number">
                                 </p>
                                 <p class="email">
-                                    <input type="text"  placeholder="Email Address">
+                                    <input class="field" type="email"  placeholder="Email Address">
                                 </p>
                                 <p class="house">
-                                    <input type="text"  placeholder="Residential Address">
+                                    <input class="field" type="text"  placeholder="Residential Address">
                                 </p>
                                 <p class="size">
-                                    <input type="text" placeholder="Shoes size">
+                                    <input class="field" type="text" placeholder="Shoes size">
                                 </p>
-                                <button onclick = "payWithPaystack()" type="submit">pay</button>
+                                <button onclick = "submitForm()" type="submit">pay</button>
                             </div>
     `
+} 
+
+
+function submitForm() {
+    
+    const name = document.querySelector('.name input').value
+
+    const phone = document.querySelector('.phone input'). value
+    
+    const email = document.querySelector('.email input'). value
+    
+    const house = document.querySelector('.house input'). value
+    
+    const size = document.querySelector('.size input'). value
+    if (isNaN(phone)){
+        errorMessages.push('Invalid phone number entered')
+    }
+    if (name.length < 3){
+        errorMessages.push('Incomplete name entererd')
+    }
+
+    if(errorMessages.length) {
+        let el = ''
+        errorMessages.forEach(err => {
+            el += `<p>${err}</p>`
+        })
+        document.querySelector('.error').innerHTML = el
+    }
+
 }
+
+
+document.querySelector('.field').addEventListener('input',function(e){
+    if(errorMessages.length){
+          errorMessages = []
+          document.querySelector('.error').innerHTML = ''
+     }
+ });
 
 function payWithPaystack() {
     let handler = PaystackPop.setup ({
