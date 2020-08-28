@@ -331,7 +331,7 @@ let singleItem = data.filter(item => {
                         <br>
                         <span>vendor: Tetrax magnificent</span>
                         <br>
-                        <span>price: ${item.price} </span>
+                        <span>price: <span id="price">${item.price}</span> </span>
                         <br>
                 `
         link.innerHTML = window.location.href.includes('product')?
@@ -367,19 +367,19 @@ function paymentForm() {
         <div class="pay-bitch">
         <div class="error"></div>
                                 <p class="name">
-                                    <input class="field" type="text"  placeholder="Full Name">
+                                    <input oninput="clearError()" class="field" type="text"  placeholder="Full Name">
                                 </p>
                                 <p class="phone">
-                                    <input class="field" type="text"  placeholder="Phone Number">
+                                    <input oninput="clearError()" class="field" type="text"  placeholder="Phone Number">
                                 </p>
                                 <p class="email">
-                                    <input class="field" type="email"  placeholder="Email Address">
+                                    <input oninput="clearError()" class="field" type="email"  placeholder="Email Address">
                                 </p>
                                 <p class="house">
-                                    <input class="field" type="text"  placeholder="Residential Address">
+                                    <input oninput="clearError()" class="field" type="text"  placeholder="Residential Address">
                                 </p>
                                 <p class="size">
-                                    <input class="field" type="text" placeholder="Shoes size">
+                                    <input oninput="clearError()" class="field" type="text" placeholder="Shoes size">
                                 </p>
                                 <button onclick = "submitForm()" type="submit">pay</button>
                             </div>
@@ -388,53 +388,66 @@ function paymentForm() {
 
 
 function submitForm() {
-    
-    const name = document.querySelector('.name input').value
+    validateFields()
+    if (!errorMessages.length) {
+        const { email, phone, amount } = getUserDetails()
 
+        payWithPaystack(email,amount,phone)
+    }
+}
+
+function getUserDetails() {
+    const name = document.querySelector('.name input').value
     const phone = document.querySelector('.phone input'). value
-    
     const email = document.querySelector('.email input'). value
-    
     const house = document.querySelector('.house input'). value
-    
     const size = document.querySelector('.size input'). value
+    const amount = document.querySelector('#price').innerText
+    return {name, phone, email, house, size, amount}
+}
+
+function validateFields() {
+    const {name, phone} = getUserDetails()
+
     if (name.length < 3){
         errorMessages.push('Incomplete name entererd')
     }
     if (isNaN(phone)){
         errorMessages.push('Invalid phone number entered')
     }
-    
 
     if(errorMessages.length) {
         let el = ''
         errorMessages.forEach(err => {
             el += `<p>${err}</p>`
         })
-        document.querySelector('.error').innerHTML = el
+        return document.querySelector('.error').innerHTML = el
     }
-
 }
 
 
-document.querySelector('.field').addEventListener('input',function(e){
-    if(errorMessages.length){
-          errorMessages = []
-          document.querySelector('.error').innerHTML = ''
-     }
- });
+function clearError() {
+    let elements = document.querySelectorAll('.field')
+    elements.forEach(el => {
+        if(errorMessages.length){
+            errorMessages = []
+            document.querySelector('.error').innerHTML = ''
+        }
+    })
+}
 
-function payWithPaystack() {
+function payWithPaystack(email,amount,phone) {
+    const price = amount+'00'
     let handler = PaystackPop.setup ({
         key:"pk_test_82ce23694563611af6015b7bdfc1dd4a1f044acf",
-        email: "emmanueldorcas15@gmail.com",
-        amount: 370000,
+        email,
+        amount: price,
         metadata: {
             custom_fields:[
                 {
                     display_name: "Mobile Number",
                     variable_name: "mobile_number",
-                    value:document.querySelector('.phone').value,
+                    value:phone,
                 }
             ]
         },
@@ -448,4 +461,6 @@ function payWithPaystack() {
     });
        handler.openIframe();
 }
+
+
 
