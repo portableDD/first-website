@@ -398,12 +398,13 @@ function submitForm() {
     const house = document.querySelector('.house input'). value
     
     const size = document.querySelector('.size input'). value
-    if (isNaN(phone)){
-        errorMessages.push('Invalid phone number entered')
-    }
     if (name.length < 3){
         errorMessages.push('Incomplete name entererd')
     }
+    if (isNaN(phone)){
+        errorMessages.push('Invalid phone number entered')
+    }
+    
 
     if(errorMessages.length) {
         let el = ''
